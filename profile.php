@@ -28,6 +28,7 @@ session_start();
     <hr>
     <a href="logout.php" style="float:right;">Logout</a>
     <a href="reset-password.php">Resetare parola</a>
+    <a href="reset-username.php">Resetare username</a>
 </div>
 
 </body>
