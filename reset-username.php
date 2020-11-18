@@ -1,24 +1,17 @@
 <?php
-// Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
 
-// Include config file
 require_once "config.php";
-
-// Define variables and initialize with empty values
 $new_username  = "";
 $new_username_err  = "";
 
-// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // Validate new username
     if(empty(trim($_POST["new_username"]))){
         $new_username_err = "Please enter the new username.";
     } elseif(strlen(trim($_POST["new_username"])) < 6){
@@ -28,35 +21,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
 
-    // Check input errors before updating the database
     if(empty($new_username_err)){
-        // Prepare an update statement
         $sql = "UPDATE users SET username = ? WHERE id = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "si", $param_username, $param_id);
 
-            // Set parameters
             $param_username = $new_username;
             $param_id = $_SESSION["id"];
 
-            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // username updated successfully. Destroy the session, and redirect to login page
                 session_destroy();
                 header("location:login.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
-
-            // Close statement
             mysqli_stmt_close($stmt);
         }
     }
 
-    // Close connection
     mysqli_close($link);
 }
 ?>
