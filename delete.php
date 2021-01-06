@@ -1,6 +1,6 @@
 <?php
-session_start();
 // Process delete operation after confirmation
+session_start();
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Include config file
     require_once "config.php";
@@ -60,13 +60,13 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     <div class="page-header">
                         <h1>Delete Account</h1>
                     </div>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                         <div class="alert alert-danger fade in">
                             <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>"/>
                             <p>Are you sure you want to delete this account?</p><br>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="profile.php" class="btn btn-default">No</a>
+                                <a href="proj.php" class="btn btn-default">No</a>
                             </p>
                         </div>
                     </form>

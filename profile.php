@@ -1,22 +1,21 @@
 <?php
 session_start();
-
-require_once "config.php";
-
-$ctime=microtime(true);
-$new_status=$_SESSION["status"];
-$status=$_SESSION["status"];
-$nr_review=$_SESSION["nr_review"];
-$nr_aprecieri=$_SESSION['nr_aprecieri'];
-$nr_penalizari=$_SESSION['nr_penalizari'];
-$min_aprec=$_SESSION['min_aprec'];
-$nr_comentarii=$_SESSION['nr_comentarii'];
-$data_inregistrare=$_SESSION['data_inregistrare'];
+    require_once "config.php";
+    $ctime=microtime(true);
+    $user_id=$_SESSION["id"];
+    $new_status=$_SESSION["title"];
+    $status=$_SESSION["title"];
+    $nr_review=$_SESSION["nr_review"];
+    $nr_aprecieri=$_SESSION['nr_aprecieri'];
+    $nr_penalizari=$_SESSION['nr_penalizari'];
+    $min_aprec=$_SESSION['min_aprec'];
+    $nr_comentarii=$_SESSION['nr_comentarii'];
+    $data_inregistrare=$_SESSION['data_inregistrare'];
 
 if(($status=="Expert" || $status=="Avansat" || $status=="Adept"  ||  $status=="Recrut") && $nr_review>=10  &&   $nr_aprecieri>=1000 && $nr_penalizari==0)
     $new_status="Master";
 
-    else if(($status=="Avansat" || $status=="Adept"  ||  $status=="Recrut")  &&  $nr_review>=5  && $nr_aprecieri>=10)
+    else if(($status=="Avansat" || $status=="Adept"  ||  $status=="Recrut")  &&  $nr_review>=5  && $nr_aprecieri>=100)
         $new_status="Expert";
 
         else if(($status=="Adept"  ||  $status=="Recrut")  &&  $nr_aprecieri>=50    && $min_aprec>=5 )
@@ -50,9 +49,8 @@ if($new_status!=$status)
     <button class="dropbtn">Meniu</button>
     <div class="dropdown-content">
         <a href="proj.php">Acasa</a>
-        <a>Top cele mai bune jocuri ale tuturor timpurilor</a>
-        <a>Forum</a>
-        <a>News</a>
+        <a href="tprev.php">Top jocuri</a>
+        <a href="forum.php">Forum</a>
         <a>Review-urile mele</a>
     </div>
 </div>
@@ -63,6 +61,16 @@ if($new_status!=$status)
     <a href="reset-password.php">Resetare parola</a>
     <a href="reset-username.php">Resetare username</a>
     <a href="delete.php">Stergere cont<a>
+        <?php
+              if($user_id){
+                include "dashboard.php";
+                exit;
+              }
+              ?>
+
 </div>
+<footer id="foot">
+        <p>Visan Traian-Dimitrie grupa 231</p>
+    </footer>
 </body>
 </html>

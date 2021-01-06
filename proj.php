@@ -1,5 +1,8 @@
 <?php
+// Initialize the session
 session_start();
+if(!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true))
+    $_SESSION['user_id']=0;
 
 ?>
 <!doctype html>
@@ -14,12 +17,9 @@ session_start();
     <div class="dropdown">
         <button class="dropbtn">Meniu</button>
         <div class="dropdown-content">
-            <a href="proj.php">Acasa</a>
-            <a>Top cele mai bune jocuri ale tuturor timpurilor</a>
-            <a>Forum</a>
-            <a>News</a>
+            <a href="tprev.php">Top jocuri</a>
+            <a href="forum.php">Forum</a>
             <a href="login.php">Profil</a>
-            <a>Review-urile mele</a>
         </div>
     </div>
     <div class="main">

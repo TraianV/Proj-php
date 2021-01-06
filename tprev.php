@@ -1,0 +1,34 @@
+<?php
+session_start();
+include_once('functions.php');
+$user_id=$_SESSION['user_id'];
+?>
+<!doctype html>
+<html lang="ro">
+<head>
+    <title>Proiect</title>
+    <link rel="stylesheet" type="text/css" href="Proiect.css">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+
+</head>
+<body>
+    <div class="dropdown">
+        <button class="dropbtn">Meniu</button>
+        <div class="dropdown-content">
+            <a href="proj.php">Acasa</a>
+            <a href="forum.php">Forum</a>
+            <a href="login.php">Profil</a>
+        </div>
+    </div>
+    <div class="main">
+    <h1 id="Title">Top jocuri</h1>
+    <?php
+        include "t10.php";
+
+      ?>
+    </div>
+    <footer id="foot">
+        <p>Visan Traian-Dimitrie grupa 231</p>
+    </footer>
+</body>
+</html>
